@@ -1,0 +1,7 @@
+{
+  "name": "woodcut",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
