@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyArVJvij-4rtRcCZwz7h1vlP1DxqwEFqKo',
+    authDomain: 'woodcut-d3a46.firebaseapp.com',
+    databaseURL: 'https://woodcut-d3a46.firebaseio.com',
+    projectId: 'woodcut-d3a46',
+    storageBucket: 'woodcut-d3a46.appspot.com',
+    messagingSenderId: '436795706413',
+    appId: '1:436795706413:web:ec10b222d35d11e1ae7ca4',
+    measurementId: 'G-V93V29V340'
+  }
 };
 
 /*

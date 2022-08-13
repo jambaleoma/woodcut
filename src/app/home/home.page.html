@@ -1,20 +1,54 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content fullscreen class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-text color="secondary">
+        <h1 style="padding-bottom: 1em;">
+          Benvenuto {{accessService.displayName$ | async}}
+        </h1>
+      </ion-text>
+    </ion-row>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button class="largeButtonSX" (click)="goToMeteo()">
+          METEO
+         <ion-icon style="padding-right: 10px;" name="cloudy-night" slot="icon-only"></ion-icon>
+       </ion-button>
+      </ion-col>
+      <ion-col style="text-align: center;">
+        <ion-button class="largeButton" (click)="goToGarage()">
+          GARAGE
+         <ion-icon style="padding-right: 10px;" name="construct" slot="icon-only"></ion-icon>
+       </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button class="largeButtonSX" (click)="goToGame()">
+          GIOCHI
+         <ion-icon style="padding-right: 10px;" name="game-controller-outline" slot="icon-only"></ion-icon>
+       </ion-button>
+      </ion-col>
+      <ion-col style="text-align: center;">
+        <ion-button class="largeButton" (click)="goToAlarm()">
+          SVEGLIA
+         <ion-icon style="padding-right: 10px;" name="alarm" slot="icon-only"></ion-icon>
+       </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="singOut()" expand="full" color="primary">
+      Disconnetti
+      <ion-icon style="padding-right: 10px;" name="exit-outline" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

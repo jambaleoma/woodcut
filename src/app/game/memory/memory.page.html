@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>memory</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row [@listAnimation]="cards.length">
+      <ion-col style="text-align: center;" *ngFor="let card of cards">
+        <div #cardContainer class="flip-card-container" (click)="flipCard(card)" [@flippedState]='card.state'>
+          <div class="flip-card">
+            <div class="flip-card-front">
+              <img src="./../../../assets/image/Memory_image/back.jpg">
+            </div>
+            <div class="flip-card-back">
+              <img [src]="'../../../assets/image/Memory_image/' + card.name + '.png'">
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="navigateTo('game')" expand="full">
+          Games
+          <ion-icon style="padding-right: 10px;" name="home" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

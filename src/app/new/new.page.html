@@ -1,0 +1,187 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>NUOVO</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <app-btn-card *ngIf="toolCard" cardTitle="Nuovo Attrezzo" cardImage="addTools" (click)="showform('tool')" ></app-btn-card>
+
+  <app-btn-card *ngIf="utensilCard" cardTitle="Nuovo Utensile" cardImage="addUtensil" (click)="showform('utensil')"></app-btn-card>
+
+  <div *ngIf="toolForm">
+
+    <form #tf="ngForm" (submit)="addTool(tf)">
+
+      <ion-item>
+        <ion-label position="floating">Nome breve</ion-label>
+        <ion-input [ngModel]="tool.shortName" type="text" name="shortName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Nome completo</ion-label>
+        <ion-input [ngModel]="tool.name" type="text" name="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Data di acquisto</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-datetime cancel-text="Cancella" done-text="Conferma" [ngModel]="tool.purchaseDate" displayFormat="MM/DD/YYYY" name="purchaseDate"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label sale position="floating">Prezzo</ion-label>
+        <ion-input [ngModel]="tool.price" type="number" name="price"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Breve descrizione</ion-label>
+        <ion-input [ngModel]="tool.productDetail.shortDescription" type="text" name="shortDescription"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Raccomandazioni</ion-label>
+        <ion-textarea [ngModel]="tool.recommendations" type="text" name="recommendations"></ion-textarea>
+      </ion-item>
+
+      <ion-list>
+        <ion-radio-group name="brandName" [ngModel]="tool.brand.name">
+          <ion-list-header>
+            <ion-label>Brand</ion-label>
+          </ion-list-header>
+
+          <ion-item *ngFor="let brand of brandsList" style="padding-top: 5px; padding-bottom: 5px;">
+            <img *ngIf="brand?.logoB64" [src]="brand.logoB64">
+            <ion-radio slot="start" value={{brand.name}}></ion-radio>
+          </ion-item>
+
+        </ion-radio-group>
+      </ion-list>
+
+      <ion-list>
+        <ion-radio-group name="type" [ngModel]="tool.type">
+          <ion-list-header>
+            <ion-label>Tipologia attrezzo</ion-label>
+          </ion-list-header>
+
+          <ion-item>
+            <ion-label>Elettrico</ion-label>
+            <ion-radio slot="start" value="elettric"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Manuale</ion-label>
+            <ion-radio slot="start" value="manual"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+      <ion-item *ngIf="showPhoto">
+        <img [src]="b64photo">
+      </ion-item>
+
+      <ion-grid>
+
+        <ion-row *ngIf="!showPhoto">
+          <ion-col>
+            <ion-button color="success" expand="full" (click)="addPicture()">
+              Aggiungi immagine
+              <ion-icon slot="end" name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="showPhoto">
+          <ion-col>
+            <ion-button color="danger" expand="full" (click)="removePicture()">
+              Elimina immagine
+              <ion-icon slot="end" name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-button expand="full" type="submit">Aggiungi</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="full" (click)="cancel()">Annulla</ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    </form>
+
+  </div>
+
+  <div *ngIf="utensilForm">
+
+    <form #uf="ngForm" style="background: transparent;" (submit)="addUtensil(uf)">
+      <ion-item color="none" style="--color: black">
+        <ion-label position="floating" style="color: black;"> Nome oggetto </ion-label>
+        <ion-input [ngModel]="utensil.name" style="color: black;" type="text" name="name"></ion-input>
+      </ion-item>
+      <ion-item color="none" style="--color: black">
+        <ion-label position="floating" style="color: black;">Numero pezzi</ion-label>
+        <ion-input [ngModel]="utensil.piecesNumber" style="color: black;" type="number" name="piecesNumber"></ion-input>
+      </ion-item>
+      <ion-item color="none" lines="none">
+        <ion-label position="stacked" style="color: black;">Data inzio lavorazione</ion-label>
+        <ion-datetime cancel-text="Cancella" done-text="Conferma" [ngModel]="utensil.startingDate" displayFormat="MM/DD/YYYY" name="startingDate"></ion-datetime>
+      </ion-item>
+      <ion-item color="none" lines="none">
+        <ion-label position="stacked" style="color: black;">Data fine lavorazione</ion-label>
+        <ion-datetime cancel-text="Cancella" done-text="Conferma" [ngModel]="utensil.endingDate" displayFormat="MM/DD/YYYY" name="endingDate"></ion-datetime>
+      </ion-item>
+
+      <ion-item *ngIf="showPhoto" color="none" lines="none">
+        <img [src]="b64photo">
+      </ion-item>
+
+      <ion-grid>
+
+        <ion-row *ngIf="!showPhoto">
+          <ion-col>
+            <ion-button color="success" expand="full" (click)="addPicture()">
+              Aggiungi immagine
+              <ion-icon slot="end" name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="showPhoto">
+          <ion-col>
+            <ion-button color="danger" expand="full" (click)="removePicture()">
+              Elimina immagine
+              <ion-icon slot="end" name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+  
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="full" type="submit">Aggiungi</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="full" (click)="cancel()">Annulla</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </form>
+
+  </div>
+
+  <!-- <ion-button expand="full" (click)="addMassiveTools()">AGGIUNTA ATTREZZI MASSIVA</ion-button> -->
+
+</ion-content>
+
+<ion-footer>
+    <ion-button style="width: 100%;" (click)="backToGarage()">Indietro</ion-button>
+</ion-footer>

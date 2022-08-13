@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Giochi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button class="largeButton" (click)="navigateTo('game/carta-forbice-sasso-spock-lizard')">
+          <img src="./../../assets/image/CFLSS.jpg" alt="carta forbice sasso spock lizard">
+       </ion-button>
+       Carta Forbice Sasso Spock Lizard
+      </ion-col>
+      <ion-col style="text-align: center;">
+        <ion-button class="largeButton" (click)="navigateTo('game/memory')">
+          <img src="./../../assets/image/memory.jpg" alt="memory">
+       </ion-button>
+       Memory
+      </ion-col>
+    </ion-row>
+    <ion-row>
+
+      <ion-col style="text-align: center;">
+        <ion-button class="largeButton">
+          <img src="./../../assets/image/wip.png" alt="work in progress">
+       </ion-button>
+       Cooming soon...
+      </ion-col>
+      <ion-col style="text-align: center;">
+        <ion-button class="largeButton">
+          <img src="./../../assets/image/wip.png" alt="work in progress">
+       </ion-button>
+       Cooming soon...
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="navigateTo('home')" expand="full">
+          Home
+          <ion-icon style="padding-right: 10px;" name="home" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

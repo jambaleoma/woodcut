@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Dettaglio Oggetto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content overflow-scroll="true">
+  <ion-grid>
+
+    <ion-row>
+
+      <ion-card>
+        <ion-card-header *ngIf="tool?.id">
+          <img *ngIf="tool?.imageB64" [src]="tool?.imageB64">
+          <ion-card-title>{{tool?.name}}</ion-card-title>
+          <ion-card-subtitle>{{tool?.productDetail?.shortDescription}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-header *ngIf="utensil?.id">
+          <img *ngIf="utensil?.imageB64" [src]="utensil?.imageB64">
+        </ion-card-header>
+
+        <ion-card-content *ngIf="tool?.id">
+          <h2 style="font-weight: bolder;">Raccomandazioni</h2>
+          <div>
+            {{tool?.recommendations}}
+          </div>
+          <div>
+            <h2 style="font-weight: bolder; padding-top: 1em;">Acquistato il:</h2>
+            <div>
+              {{tool?.purchaseDate | date: 'dd/MM/yyyy' }}
+            </div>
+          </div>
+          <div>
+            <h2 style="font-weight: bolder; padding-top: 1em;">Prezzo:</h2>
+            <div>
+              {{tool?.price | currency: 'EUR' : 'symbol': undefined : 'it-IT'}}
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+    </ion-row>
+
+    <ion-row>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  Dettagli
+                </ion-col>
+                <ion-col *ngIf="tool?.id">
+                  <img *ngIf="tool?.brand?.name " [src]="takeBrandLogo(tool?.brand.name)">
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-title>
+        </ion-card-header>
+
+        <div *ngIf="tool?.id">
+          <ion-card *ngFor="let tooldetail of tool?.productDetail?.descriptions">
+            <ion-card-header (click)="showLabelValue(tooldetail.code)">
+              <ion-card-title>{{tooldetail.title}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content #cardContentId>
+              <span style="display: none" id="{{tooldetail.code}}">
+                <ion-row *ngFor="let tooldetailtext of tooldetail.descriptionKeyValue">
+                  <p style="font-weight: bolder;">{{tooldetailtext.label}}: </p>
+                  <p style="padding-left: 1em;">{{tooldetailtext.value}}</p>
+                </ion-row>
+              </span>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <div *ngIf="utensil?.id">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{utensil?.name}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <span>
+                <ion-row>
+                  <h2 style="font-weight: bolder;">Numero di Pezzi: {{utensil?.piecesNumber}} </h2>
+                  <h2 style="font-weight: bolder;">Data di Inizio: {{utensil?.startingDate.slice(0,10)}} </h2>
+                  <h2 style="font-weight: bolder;">Data di Fine: {{utensil?.endingDate.slice(0,10)}} </h2>
+                </ion-row>
+              </span>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+      </ion-card>
+
+    </ion-row>
+
+    <ion-row *ngIf="tool?.id">
+      <ion-button color="danger" style="width: 100%;" (click)="presentConfirmationAlert(tool, 'Attrezzo')">Eilimina Attrezzo</ion-button>
+    </ion-row>
+
+    <ion-row *ngIf="utensil?.id">
+      <ion-button color="danger" style="width: 100%;" (click)="presentConfirmationAlert(utensil, 'Utensile')">Eilimina Utensile</ion-button>
+    </ion-row>
+
+    <ion-row>
+      <ion-button style="width: 100%;" (click)="backToArchive()">Indietro</ion-button>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

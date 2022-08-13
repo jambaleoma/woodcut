@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Archivio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="woodBackGround">
+
+  <app-btn-card *ngIf="toolCard" cardTitle="Attrezzi" cardImage="addTools" (click)="showArchive('tool')"></app-btn-card>
+
+  <app-btn-card *ngIf="utensilCard" cardTitle="Utensili" cardImage="addUtensil" (click)="showArchive('utensil')">
+  </app-btn-card>
+
+  <div *ngIf="toolArchive">
+    <ion-list class="bg-transparent">
+      <ion-item *ngFor="let tool of tools" (click)="openToolDetails(tool)" color="none" lines="none">
+        <ion-avatar slot="start">
+          <img src={{tool.imageB64}} style="width: 100%;" />
+        </ion-avatar>
+        <ion-label>
+          <h2 class="blackColor">{{tool && tool.shortName ? tool.shortName : ''}}</h2>
+          <h3 class="blackColor">{{tool && tool.price ? tool.price : '0'}} €</h3>
+          <!-- <ion-icon (click)="deleteTool(tool)" name="trash" style="color: red;"></ion-icon> -->
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="utensilArchive">
+    <ion-list class="bg-transparent">
+      <ion-item *ngFor="let utensil of utensils" (click)="openUtensilDetails(utensil)" color="none" lines="none">
+        <ion-avatar slot="start">
+          <img src={{utensil.imageB64}} style="width: 100%;" />
+        </ion-avatar>
+        <ion-label>
+          <h1 class="blackColor">{{utensil && utensil.name ? utensil.name : ''}}</h1>
+          <h4 class="blackColor">Data Inizio:  {{utensil && utensil.startingDate ? utensil.startingDate.slice(0,10) : ''}}</h4>
+          <h4 class="blackColor">Data Fine: {{utensil && utensil.endingDate ? utensil.endingDate.slice(0,10) : ''}}</h4>
+          <!-- <ion-icon (click)="deleteTool(tool)" name="trash" style="color: red;"></ion-icon> -->
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>
+
+
+<ion-button *ngIf="toolArchive || utensilArchive" expand="full" (click)="showArchive('back')">Indietro</ion-button>
+
+<ion-footer *ngIf="!toolArchive && !utensilArchive">
+  <ion-button style="width: 100%;" (click)="backToGarage()">Indietro</ion-button>
+</ion-footer>

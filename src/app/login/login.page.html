@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="fallback">
+    <ion-icon name="lock-closed-outline" size="large"></ion-icon>
+    <ion-input [(ngModel)]="email" type="email" placeholder="Email" autofocus="true" style="margin-top: 1em;"></ion-input>
+    <ion-input [(ngModel)]="password" type="password" placeholder="Password" style="margin-top: 1em;"></ion-input>
+    <ion-button (click)="signIn()" expand="full" style="margin-top: 1em;">Accedi</ion-button>
+    <!-- <ion-button (click)="openBiometricAuth()" expand="full" [disabled]="!email">
+      <ion-icon name="finger-print" slot="icon-only"></ion-icon>
+    </ion-button> -->
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="goToSignUp()" color="secondary" expand="full">Registrati</ion-button>
+  </ion-toolbar>
+</ion-footer>

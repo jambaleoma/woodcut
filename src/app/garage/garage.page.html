@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>garage</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="fallback" style="padding-top: 2em;">
+    <ion-button (click)="navigateTo('new')" expand="full">
+      Nuovo
+      <ion-icon style="padding-right: 10px;" name="add-circle" slot="icon-only"></ion-icon>
+    </ion-button>
+    <ion-button (click)="navigateTo('archive')" expand="full">
+      Archivio
+      <ion-icon style="padding-right: 10px;" name="book-outline" slot="icon-only"></ion-icon>
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="warning">
+    <ion-button (click)="navigateTo('home')" expand="full">
+      Home
+      <ion-icon style="padding-right: 10px;" name="home" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

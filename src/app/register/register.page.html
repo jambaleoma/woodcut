@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Registrati</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <form #suf="ngForm" (submit)="signUp(suf)">
+
+      <ion-item>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input [(ngModel)]="displayName" name="displayName" type="text" placeholder="Nome" style="margin-top: 1em;">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [(ngModel)]="email" name="email" type="email" placeholder="Email" style="margin-top: 1em;">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input [(ngModel)]="password" name="password" type="password" placeholder="Password"
+          style="margin-top: 1em;"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Ripeti Password</ion-label>
+        <ion-input [(ngModel)]="password2" name="password2" type="password" placeholder="Ripeti Password"
+          style="margin-top: 1em;"></ion-input>
+      </ion-item>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="full" type="submit">Registrati</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="goToLogin()" color="secondary" expand="full">Indietro</ion-button>
+  </ion-toolbar>
+</ion-footer>

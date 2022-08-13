@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Meteo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col style="color: white;">
+        CERCA LA CITTÀ:
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item color="none">
+          <ion-label position="floating" style="color: white;">Nome della Città</ion-label>
+          <ion-input (ionChange)="searchCity($event)" debounce="500"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="citiesSearch.length > 0">
+    <ion-row>
+      <ion-col style="color: white;">
+        SELEZIONA LA CITTÀ:
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item color="none">
+          <ion-label style="color: white;">CITTÀ</ion-label>
+          <ion-select ok-text="Okay" cancel-text="Nah" (ionChange)="checkCity($event)" [value]="city">
+            <ion-select-option *ngFor="let city of citiesSearch" value="{{city.name}}">{{city.name | uppercase}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row *ngIf="citiesSearch.length > 0 && citySelected && iconDescription">
+      <ion-col style="text-align: center; color: red; font: 2em sans-serif; padding-top: 2em;">
+        {{description | uppercase}}
+      </ion-col>
+      <ion-col>
+        <img src="'./../../../assets/icon/{{iconDescription}}.png" width="150px" style="padding-top: 15px;">
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="citiesSearch.length > 0 && citySelected">
+      <ion-col>
+        <div #map id="map"></div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="citiesSearch.length > 0 && citySelected">
+      <ion-col style="color: white; text-align: center;">
+        ALBA E TRAMONTO PER {{city | uppercase}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="citiesSearch.length > 0 && citySelected" style="color: white; text-align: center;">
+    <ion-row>
+      <ion-col>
+        ALBA: {{(sunRise * 1000) | date:'mediumTime' }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        TRAMONTO: {{sunSet * 1000 | date:'mediumTime'}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="secondary">
+    <ion-button (click)="navigateTo('home')" expand="full">
+      Home
+      <ion-icon style="padding-right: 10px;" name="home" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
