@@ -1,6 +1,13 @@
 {
-	"appId": "io.ionic.starter",
+	"appId": "io.ionic.woodcut",
 	"appName": "woodcut",
 	"webDir": "www",
-	"bundledWebRuntime": false
-}
+	"bundledWebRuntime": false,
+	"plugins": {
+	  "SplashScreen": {
+		"launchShowDuration": 3000
+	  }
+	},
+	"cordova": {}
+  }
+  
